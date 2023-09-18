@@ -5,7 +5,9 @@ def SERVERS = [
 ]
 
 pipeline {
-    // agent {label 'Jenkins'}
+    agent {
+        label 'Jenkins'
+    }
 
     environment {
         // BRANCH_NAME = master
