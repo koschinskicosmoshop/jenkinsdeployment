@@ -44,7 +44,7 @@ pipeline {
             stage("SVN Check Local Modifications") { // ($server)") {
                 steps {
                     // https rest call
-                    restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                    restCall(method : 'POST', url : 'https://dummy.restapiexample.com/api/v1/create', jsonbody : '{"name":"test","salary":"123","age":"23"}')
                 }
             }
 
@@ -96,13 +96,13 @@ pipeline {
     }
 }
 
-def restCall(method,url,jsonbody) {
+def restCall(String method = 'POST',String url,String jsonbody) {
     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_FORM_DATA',
             formData: [[body: jsonbody]],
             httpMode: method, quiet: true, responseHandle: 'NONE', timeout: null,
             url: url,
             validResponseCodes: '200', validResponseContent: 'OK'
-    println("Status: ${response.status}")
-    println("Response: ${response.content}")
-    println("Headers: ${response.headers}")
+    echo "Status: ${response.status}"
+    echo "Response: ${response.content}"
+    echo "Headers: ${response.headers}"
 }
