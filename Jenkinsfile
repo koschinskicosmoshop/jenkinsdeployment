@@ -33,14 +33,14 @@ pipeline {
         //}
 
         // SERVERS.each { server, ip ->
-            stage("SVN Check Local Modifications ($server)") {
+            stage("SVN Check Local Modifications") { // ($server)") {
                 steps {
                     // https rest call
                     restCall('POST', 'https://...', '{...}')
                 }
             }
 
-            stage("Deploy ($server)") {
+            stage("Deploy") { // ($server)") {
                 environment {
                     SERVER_NAME = server
                     SERVER_IP = ip
