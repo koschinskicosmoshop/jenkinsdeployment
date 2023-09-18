@@ -41,10 +41,10 @@ pipeline {
             }
 
             stage("Deploy") { // ($server)") {
-                environment {
-                    SERVER_NAME = server
-                    SERVER_IP = ip
-                }
+                // environment {
+                //    SERVER_NAME = server
+                //    SERVER_IP = ip
+                // }
                 stages {
 
                     stage("Maintenance Mode ON") {
