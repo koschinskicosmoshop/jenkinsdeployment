@@ -26,61 +26,63 @@ pipeline {
     }
 
     stages {
-        script {
-            // stage('Github Checkout (all)') {
-            //    steps {
-            //        git(url: SCM_URL, credentialsId: 'jenkins2_ssh_credentials', branch: '$BRANCH_NAME')
-            //    }
-            //}
+        stage {
+            script {
+                // stage('Github Checkout (all)') {
+                //    steps {
+                //        git(url: SCM_URL, credentialsId: 'jenkins2_ssh_credentials', branch: '$BRANCH_NAME')
+                //    }
+                //}
 
-            SERVERS.each { server, ip ->
-                stage("SVN Check Local Modifications ($server)") {
-                    steps {
-                        // https rest call
-                        restCall('POST', 'https://...', '{...}')
+                SERVERS.each { server, ip ->
+                    stage("SVN Check Local Modifications ($server)") {
+                        steps {
+                            // https rest call
+                            restCall('POST', 'https://...', '{...}')
+                        }
                     }
-                }
 
-                stage("Deploy ($server)") {
-                    environment {
-                        SERVER_NAME = server
-                        SERVER_IP   = ip
-                    }
-                    stages {
-
-                        stage("Maintenance Mode ON") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
-                            }
+                    stage("Deploy ($server)") {
+                        environment {
+                            SERVER_NAME = server
+                            SERVER_IP = ip
                         }
+                        stages {
 
-                        stage("Version Switch SVN") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
+                            stage("Maintenance Mode ON") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
                             }
-                        }
 
-                        stage("Update Database") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
+                            stage("Version Switch SVN") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
                             }
-                        }
 
-                        stage("Update Setup Hash") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
+                            stage("Update Database") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
                             }
-                        }
 
-                        stage("Increase Version") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
+                            stage("Update Setup Hash") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
                             }
-                        }
 
-                        stage("Maintenance Mode OFF") {
-                            steps {
-                                restCall('POST', 'https://...', '{...}')
+                            stage("Increase Version") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
+                            }
+
+                            stage("Maintenance Mode OFF") {
+                                steps {
+                                    restCall('POST', 'https://...', '{...}')
+                                }
                             }
                         }
                     }
