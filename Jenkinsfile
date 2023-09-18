@@ -46,8 +46,10 @@ pipeline {
 
             stage("SVN Check Local Modifications") { // ($server)") {
                 steps {
-                    // https rest call
-                    restCall(method : 'POST', url : 'https://dummy.restapiexample.com/api/v1/create', jsonbody : '{"name":"test","salary":"123","age":"23"}')
+                    script {
+                        // https rest call
+                        restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                    }
                 }
             }
 
@@ -60,7 +62,9 @@ pipeline {
 
                     stage("Maintenance Mode ON") {
                         steps {
-                            restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                            script {
+                                restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                            }
                         }
                     }
 
