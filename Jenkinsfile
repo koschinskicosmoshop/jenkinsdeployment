@@ -98,7 +98,7 @@ pipeline {
 }
 
 def testFunc(String msg = 'Platzhalter') {
-    echo "Hallo $(msg)"
+    echo "Hallo $msg"
 }
 
 def restCall(String method = 'POST',String url,String jsonbody) {
