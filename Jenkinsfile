@@ -38,7 +38,7 @@ pipeline {
             stage("SVN Check Local Modifications") { // ($server)") {
                 steps {
                     // https rest call
-                    restCall('POST', 'https://...', '{...}')
+                    restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
                 }
             }
 
