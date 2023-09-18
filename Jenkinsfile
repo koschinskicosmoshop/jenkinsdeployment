@@ -39,7 +39,7 @@ pipeline {
                 steps {
                     echo "Dies ist eine minimalaufwendige Test-Stage"
                     script {
-                        testFunc(msg: 'Guenter')
+                        testFunc('Guenter')
                     }
                 }
             }
