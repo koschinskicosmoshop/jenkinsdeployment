@@ -6,7 +6,7 @@ def SERVERS = [
 
 pipeline {
     agent {
-        label 'master'
+        label 'Jenkins-Default'
     }
 
     environment {
