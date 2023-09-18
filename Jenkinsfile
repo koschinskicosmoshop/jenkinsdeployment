@@ -35,6 +35,12 @@ pipeline {
         //}
 
         // SERVERS.each { server, ip ->
+            stage("Test Jenkinsfile") { // ($server)") {
+                steps {
+                    echo "Dies ist eine minimalaufwendige Test-Stage"
+                }
+            }
+
             stage("SVN Check Local Modifications") { // ($server)") {
                 steps {
                     // https rest call
