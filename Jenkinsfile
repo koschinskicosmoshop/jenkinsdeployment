@@ -32,7 +32,7 @@ pipeline {
         //    }
         //}
 
-        SERVERS.each { server, ip ->
+        // SERVERS.each { server, ip ->
             stage("SVN Check Local Modifications ($server)") {
                 steps {
                     // https rest call
@@ -84,7 +84,7 @@ pipeline {
                     }
                 }
             }
-        }
+        //}
     }
 }
 
