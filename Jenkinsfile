@@ -38,7 +38,9 @@ pipeline {
             stage("Test Jenkinsfile") { // ($server)") {
                 steps {
                     echo "Dies ist eine minimalaufwendige Test-Stage"
-                    testFunc(msg : 'Guenter')
+                    script {
+                        testFunc(msg: 'Guenter')
+                    }
                 }
             }
 
