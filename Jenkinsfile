@@ -51,7 +51,7 @@ pipeline {
 
                     stage("Maintenance Mode ON") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
                         }
                     }
 
