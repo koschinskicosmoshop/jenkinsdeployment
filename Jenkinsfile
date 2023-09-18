@@ -38,6 +38,7 @@ pipeline {
             stage("Test Jenkinsfile") { // ($server)") {
                 steps {
                     echo "Dies ist eine minimalaufwendige Test-Stage"
+                    testFunc(msg : 'Guenter')
                 }
             }
 
@@ -94,6 +95,10 @@ pipeline {
             }
         //}
     }
+}
+
+def testFunc(String msg = 'Platzhalter') {
+    echo "Hallo $(msg)"
 }
 
 def restCall(String method = 'POST',String url,String jsonbody) {
