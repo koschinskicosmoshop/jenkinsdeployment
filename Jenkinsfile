@@ -109,10 +109,10 @@ def testFunc(String msg = 'Platzhalter') {
 
 def restCall(String method = 'POST',String url,String jsonbody) {
     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_FORM_DATA',
-            formData: [[body: jsonbody]],
-            httpMode: method, quiet: true, responseHandle: 'NONE', timeout: null,
-            url: url,
-            validResponseCodes: '200', validResponseContent: 'OK'
+            requestBody: jsonbody,
+            httpMode: method, // responseHandle: 'NONE', timeout: null, quiet: true,
+            url: url
+            // validResponseCodes: '200', validResponseContent: 'OK'
     echo "Status: ${response.status}"
     echo "Response: ${response.content}"
     echo "Headers: ${response.headers}"
