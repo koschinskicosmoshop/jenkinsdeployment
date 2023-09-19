@@ -48,7 +48,7 @@ pipeline {
                 steps {
                     script {
                         // https rest call
-                        restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                        restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                     }
                 }
             }
@@ -63,7 +63,7 @@ pipeline {
                     stage("Maintenance Mode ON") {
                         steps {
                             script {
-                                restCall('POST', 'https://dummy.restapiexample.com/api/v1/create', '{"name":"test","salary":"123","age":"23"}')
+                                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                             }
                         }
                     }
