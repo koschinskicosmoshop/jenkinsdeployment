@@ -1,9 +1,3 @@
-def SERVERS = [
-    Server1: '123.123.123.1',
-    Server2: '123.123.123.2',
-    Server3: '123.123.123.3'
-]
-
 pipeline {
     agent {
         label 'Jenkins-Default'
@@ -16,95 +10,66 @@ pipeline {
         SCM_URL = 'https://github.com/koschinskicosmoshop/jenkinsdeployment.git' // SCM=>Source Control Management
     }
 
-    options {
-        buildDiscarder(
-            logRotator(
-                // daysToKeepStr: '7', // history is only kept up to this days
-                numToKeepStr: '7', // only this number of build logs are kept
-                // artifactDaysToKeepStr: '7', // artifacts are only kept up to this days
-                // artifactNumToKeepStr: '7', //  only this number of builds have their artifacts kept
-            )
-        )
-    }
+    //options {
+    //    buildDiscarder(
+    //        logRotator(
+    //            // daysToKeepStr: '7', // history is only kept up to this days
+    //            numToKeepStr: '7', // only this number of build logs are kept
+    //            // artifactDaysToKeepStr: '7', // artifacts are only kept up to this days
+    //            // artifactNumToKeepStr: '7', //  only this number of builds have their artifacts kept
+    //        )
+    //    )
+    //}
 
     stages {
-        // stage('Github Checkout (all)') {
-        //    steps {
-        //        git(url: SCM_URL, credentialsId: 'jenkins2_ssh_credentials', branch: '$BRANCH_NAME')
-        //    }
-        //}
 
-        // SERVERS.each { server, ip ->
-            stage("Test Jenkinsfile") { // ($server)") {
-                steps {
-                    echo "Dies ist eine minimalaufwendige Test-Stage"
-                    script {
-                        testFunc('Guenter')
-                    }
+        stage("SVN Check Local Modifications") {
+            steps {
+                script {
+                    // https rest call
+                    restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                 }
             }
+        }
 
-            stage("SVN Check Local Modifications") { // ($server)") {
-                steps {
-                    script {
-                        // https rest call
-                        restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                    }
+        stage("Maintenance Mode ON") {
+            steps {
+                script {
+                    restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                 }
             }
+        }
 
-            stage("Deploy") { // ($server)") {
-                // environment {
-                //    SERVER_NAME = server
-                //    SERVER_IP = ip
-                // }
-                stages {
-
-                    stage("Maintenance Mode ON") {
-                        steps {
-                            script {
-                                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                            }
-                        }
-                    }
-
-                    stage("Version Switch SVN") {
-                        steps {
-                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                        }
-                    }
-
-                    stage("Update Database") {
-                        steps {
-                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                        }
-                    }
-
-                    stage("Update Setup Hash") {
-                        steps {
-                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                        }
-                    }
-
-                    stage("Increase Version") {
-                        steps {
-                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                        }
-                    }
-
-                    stage("Maintenance Mode OFF") {
-                        steps {
-                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
-                        }
-                    }
-                }
+        stage("Version Switch SVN") {
+            steps {
+                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
             }
-        //}
+        }
+
+        stage("Update Database") {
+            steps {
+                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+            }
+        }
+
+        stage("Update Setup Hash") {
+            steps {
+                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+            }
+        }
+
+        stage("Increase Version") {
+            steps {
+                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+            }
+        }
+
+        stage("Maintenance Mode OFF") {
+            steps {
+                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+            }
+        }
     }
-}
-
-def testFunc(String msg = 'Platzhalter') {
-    echo "Hallo $msg"
 }
 
 def restCall(String method = 'POST',String url,String jsonbody) {
