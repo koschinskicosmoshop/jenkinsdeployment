@@ -70,31 +70,31 @@ pipeline {
 
                     stage("Version Switch SVN") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                         }
                     }
 
                     stage("Update Database") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                         }
                     }
 
                     stage("Update Setup Hash") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                         }
                     }
 
                     stage("Increase Version") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                         }
                     }
 
                     stage("Maintenance Mode OFF") {
                         steps {
-                            restCall('POST', 'https://...', '{...}')
+                            restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
                         }
                     }
                 }
@@ -110,7 +110,7 @@ def testFunc(String msg = 'Platzhalter') {
 def restCall(String method = 'POST',String url,String jsonbody) {
     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_FORM_DATA',
             requestBody: jsonbody,
-            httpMode: method, // responseHandle: 'NONE', timeout: null, quiet: true,
+            httpMode: method, // timeout: null
             url: url
             // validResponseCodes: '200', validResponseContent: 'OK'
     echo "Status: ${response.status}"
