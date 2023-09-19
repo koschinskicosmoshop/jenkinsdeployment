@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // https rest call
-                    restCall('POST', '${SERVER_URL}/todos', '{}')
+                    restCall('POST', "${SERVER_URL}/todos", '{}')
                 }
             }
         }
@@ -73,6 +73,7 @@ def restCall(String method = 'POST',String url,String jsonbody) {
 
 def getServerUrl() {
     if (JOB_NAME == 'Standard2') {
+        echo 'https://jsonplaceholder.typicode.com'
         return 'https://jsonplaceholder.typicode.com'
     }
     if (JOB_NAME == 'Standard1') {
