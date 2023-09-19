@@ -15,46 +15,43 @@ pipeline {
 
         stage("SVN Check Local Modifications") {
             steps {
-                script {
-                    // https rest call
-                    restCall('POST', "${SERVER_URL}/todos", '{}')
-                }
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Maintenance Mode ON") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Version Switch SVN") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Update Database") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Update Setup Hash") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Increase Version") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
 
         stage("Maintenance Mode OFF") {
             steps {
-                restCall('POST', '${SERVER_URL}/todos', '{}')
+                restCall('POST', "${SERVER_URL}/todos", '{}')
             }
         }
     }
@@ -73,7 +70,6 @@ def restCall(String method = 'POST',String url,String jsonbody) {
 
 def getServerUrl() {
     if (JOB_NAME == 'Standard2') {
-        echo 'https://jsonplaceholder.typicode.com'
         return 'https://jsonplaceholder.typicode.com'
     }
     if (JOB_NAME == 'Standard1') {
