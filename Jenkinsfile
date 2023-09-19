@@ -10,21 +10,12 @@ pipeline {
         SCM_URL = 'https://github.com/koschinskicosmoshop/jenkinsdeployment.git' // SCM=>Source Control Management
     }
 
-    //options {
-    //    buildDiscarder(
-    //        logRotator(
-    //            // daysToKeepStr: '7', // history is only kept up to this days
-    //            numToKeepStr: '7', // only this number of build logs are kept
-    //            // artifactDaysToKeepStr: '7', // artifacts are only kept up to this days
-    //            // artifactNumToKeepStr: '7', //  only this number of builds have their artifacts kept
-    //        )
-    //    )
-    //}
-
     stages {
 
         stage("SVN Check Local Modifications") {
             steps {
+                echo "Job Name: $JOB_NAME"
+
                 script {
                     // https rest call
                     restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
@@ -78,7 +69,7 @@ def restCall(String method = 'POST',String url,String jsonbody) {
             httpMode: method, // timeout: null
             url: url
             // validResponseCodes: '200', validResponseContent: 'OK'
-    echo "Status: ${response.status}"
-    echo "Response: ${response.content}"
-    echo "Headers: ${response.headers}"
+    //echo "Status: ${response.status}"
+    //echo "Response: ${response.content}"
+    //echo "Headers: ${response.headers}"
 }
