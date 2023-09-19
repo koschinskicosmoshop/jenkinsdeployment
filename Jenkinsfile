@@ -4,6 +4,7 @@ pipeline {
     }
 
     environment {
+        SERVER_URL = getServerUrl()
         // BRANCH_NAME = master
         // SERVICE_VERSION - sollte übergeben werden?
         // Todo: koschinskicosmoshop => cosmoshop (repo nach owner verschieben)
@@ -14,8 +15,6 @@ pipeline {
 
         stage("SVN Check Local Modifications") {
             steps {
-                echo "Job Name: $JOB_NAME"
-
                 script {
                     // https rest call
                     restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
@@ -72,4 +71,14 @@ def restCall(String method = 'POST',String url,String jsonbody) {
     //echo "Status: ${response.status}"
     //echo "Response: ${response.content}"
     //echo "Headers: ${response.headers}"
+}
+
+def getServerUrl() {
+    if (JOB_NAME == 'Standard2') {
+        return 'http://eco4.cosmoshop.de'
+    }
+    if (JOB_NAME == 'Standard1') {
+        return 'http://eco3.cosmoshop.de'
+    }
+    return ''
 }
