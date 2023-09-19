@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // https rest call
-                    restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                    restCall('POST', '$(SERVER_URL)/todos', '{}')
                 }
             }
         }
@@ -25,38 +25,38 @@ pipeline {
         stage("Maintenance Mode ON") {
             steps {
                 script {
-                    restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                    restCall('POST', '$(SERVER_URL)/todos', '{}')
                 }
             }
         }
 
         stage("Version Switch SVN") {
             steps {
-                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                restCall('POST', '$(SERVER_URL)/todos', '{}')
             }
         }
 
         stage("Update Database") {
             steps {
-                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                restCall('POST', '$(SERVER_URL)/todos', '{}')
             }
         }
 
         stage("Update Setup Hash") {
             steps {
-                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                restCall('POST', '$(SERVER_URL)/todos', '{}')
             }
         }
 
         stage("Increase Version") {
             steps {
-                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                restCall('POST', '$(SERVER_URL)/todos', '{}')
             }
         }
 
         stage("Maintenance Mode OFF") {
             steps {
-                restCall('POST', 'https://jsonplaceholder.typicode.com/todos', '{}')
+                restCall('POST', '$(SERVER_URL)/todos', '{}')
             }
         }
     }
@@ -75,10 +75,10 @@ def restCall(String method = 'POST',String url,String jsonbody) {
 
 def getServerUrl() {
     if (JOB_NAME == 'Standard2') {
-        return 'http://eco4.cosmoshop.de'
+        return 'https://jsonplaceholder.typicode.com'
     }
     if (JOB_NAME == 'Standard1') {
-        return 'http://eco3.cosmoshop.de'
+        return 'http://eco4.cosmoshop.de'
     }
     return ''
 }
