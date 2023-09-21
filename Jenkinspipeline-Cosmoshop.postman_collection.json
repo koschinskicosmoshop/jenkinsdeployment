@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "f901649c-0089-4138-8c17-0d4a7bab636a",
+		"name": "Jenkinspipeline-Cosmoshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1997752"
+	},
+	"item": [
+		{
+			"name": "Trigger Build Request",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "11eb3bd3ae3726f85a1e202d8cd8bd6d7d",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cosmoshop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\" : \"Make a new deployment\",\r\n    \"token\" : \"SOMESECURETOKEN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9080/job/standard2/build?token=76c765e6-5634-11ee-8a79-0800271f3fcd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"job",
+						"standard2",
+						"build"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "76c765e6-5634-11ee-8a79-0800271f3fcd"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
